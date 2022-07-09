@@ -1,0 +1,58 @@
+{
+  "dashboard": {
+    "meta": {},
+    "label": "Dashboard"
+  },
+  "error": {
+    "meta": {
+      "title": "Error"
+    },
+    "content": {
+      "title": "Error 404",
+      "description": "We're sorry, but the page you requested does not exist, or you have the wrong link",
+      "link": "Return"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Login to system"
+    },
+    "label": "Sign In"
+  },
+  "lostPassword": {
+    "meta": {
+      "title": "Lost password"
+    },
+    "label": "Lost password"
+  },
+  "posts": {
+    "meta": {
+      "title": "List of posts"
+    },
+    "label": "Posts"
+  },
+  "profile": {
+    "meta": {
+      "title": "User profile"
+    },
+    "label": "User profile"
+  },
+  "registration": {
+    "meta": {
+      "title": "New user registration"
+    },
+    "label": "Sign Up"
+  },
+  "settings": {
+    "meta": {
+      "title": "System settings"
+    },
+    "label": "Settings"
+  },
+  "users": {
+    "meta": {
+      "title": "List of users"
+    },
+    "label": "Users"
+  }
+}

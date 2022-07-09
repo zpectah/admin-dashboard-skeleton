@@ -1,0 +1,11 @@
+{
+  "general": {
+    "label": "General"
+  },
+  "content": {
+    "label": "Content"
+  },
+  "language": {
+    "label": "Language"
+  }
+}

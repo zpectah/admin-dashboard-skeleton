@@ -3,6 +3,11 @@
     "ok": "OK",
     "cancel": "Cancel",
     "submit": "Submit",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "confirm": "Confirm"
+  },
+  "footer": {
+    "copyright": "Copyright by {{company}}",
+    "allRights": "All rights reserved"
   }
 }

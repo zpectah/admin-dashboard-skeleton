@@ -1,7 +1,7 @@
 import { routeItemProps, tabItemProps, themesProps } from './types';
 
 export const PROJECT_META = {
-    name: 'SKELETON DASHBOARD DEMO',
+    name: 'COMPANY NAME',
     author: 'Tomas Sychra | zpecter.com',
     copyright: 2022,
     meta: {

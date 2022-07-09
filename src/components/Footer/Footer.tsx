@@ -1,7 +1,12 @@
 import React from 'react';
-import { styled } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { styled, Typography } from '@mui/material';
 
-import { SIDEBAR_WIDTH, TRANSITION_DEFAULT_DURATION } from 'const';
+import { PROJECT_META } from 'config';
+import {
+    SIDEBAR_WIDTH,
+    TRANSITION_DEFAULT_DURATION,
+} from 'const';
 
 const WrapperOuter = styled('div')(() => `
     width: 100%;
@@ -13,15 +18,13 @@ const WrapperOuter = styled('div')(() => `
 `);
 
 export type FooterProps = {
-    minimal?: boolean,
     sidebarOpen?: boolean,
 }
 
 const Footer = (props: FooterProps) => {
-    const {
-        // minimal,
-        sidebarOpen,
-    } = props;
+    const { sidebarOpen } = props;
+
+    const { t } = useTranslation('common');
 
     return (
         <WrapperOuter
@@ -32,7 +35,11 @@ const Footer = (props: FooterProps) => {
                 transition: `width ${TRANSITION_DEFAULT_DURATION} ease-in-out 0s, left ${TRANSITION_DEFAULT_DURATION} ease-in-out 0s`,
             }}
         >
-            footer
+            <Typography
+                variant="caption"
+            >
+                &copy; {PROJECT_META.copyright} {t('footer.copyright', { company: PROJECT_META.name })} | {t('footer.allRights')}
+            </Typography>
         </WrapperOuter>
     );
 };

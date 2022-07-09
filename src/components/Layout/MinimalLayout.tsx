@@ -33,7 +33,7 @@ const MinimalLayout: React.FC<MinimalLayoutProps> = (props) => {
                     {children}
                 </Container>
             </LayoutContent>
-            <Footer minimal />
+            <Footer />
         </LayoutBase>
     );
 };

@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
 
 import UiDialog, { UiDialogProps } from './Dialog';
+import { Button } from '../Button';
 
 type UiConfirmDialogBaseProps = {
     open: UiDialogProps['open'],
@@ -10,6 +12,7 @@ type UiConfirmDialogBaseProps = {
     content: React.ReactNode,
     title: UiDialogProps['title'],
     confirmButtonText?: string,
+    cancelButtonText?: string,
 }
 export type UiConfirmDialogProps = UiConfirmDialogBaseProps
 
@@ -20,8 +23,14 @@ const UiConfirmDialog = (props: UiConfirmDialogProps) => {
         onConfirm,
         content,
         title,
-        confirmButtonText = 'confirm'
+        confirmButtonText,
+        cancelButtonText,
     } = props;
+
+    const { t } = useTranslation('common');
+
+    const labelConfirm = confirmButtonText ? confirmButtonText : t('btn.confirm');
+    const labelCancel = cancelButtonText ? cancelButtonText : t('btn.cancel');
 
     const closeHandler = () => {
         if (onClose) onClose({}, 'backdropClick');
@@ -53,16 +62,18 @@ const UiConfirmDialog = (props: UiConfirmDialogProps) => {
             }}
             footerNode={
                 <>
-                    <button
+                    <Button
+                        secondary
                         onClick={closeHandler}
                     >
-                        cancel
-                    </button>
-                    <button
+                        {labelCancel}
+                    </Button>
+                    <Button
+                        primary
                         onClick={confirmHandler}
                     >
-                        {confirmButtonText}
-                    </button>
+                        {labelConfirm}
+                    </Button>
                 </>
             }
         >

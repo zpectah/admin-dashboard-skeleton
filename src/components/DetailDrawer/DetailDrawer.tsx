@@ -1,7 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-    styled,
-    Box,
     Drawer,
     Typography,
     DrawerProps,
@@ -11,34 +10,17 @@ import {
     CloseButton,
     Scrollable,
 } from '../ui';
-
-const DrawerContainer = styled(Box)(({ theme }) => `
-    height: 100%;
-    position: relative;
-    
-    ${theme.breakpoints.down('md')} {
-        width: 100vw;
-    }
-    ${theme.breakpoints.up('md')} {
-        width: ${theme.breakpoints.values.md}px;
-    }    
-`);
-const DrawerHeader = styled(Box)(({ theme }) => `
-    width: 100%;
-    min-height: 75px;
-    padding: ${theme.spacing(2.5)};
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`);
-const DrawerContent = styled(Box)(({ theme }) => `
-    padding: ${theme.spacing(2)} ${theme.spacing(2.5)};
-`);
+import {
+    DrawerContainer,
+    DrawerHeader,
+    DrawerContent,
+} from './elements';
 
 type DetailDrawerBaseProps = {
     children?: React.ReactNode,
     open?: boolean,
     onClose?: () => void,
+    rootList?: string,
     drawerProps?: Partial<DrawerProps>,
     title?: string,
 };
@@ -49,15 +31,21 @@ const DetailDrawer: React.FC<DetailDrawerProps> = (props) => {
         children,
         open,
         onClose,
+        rootList,
         drawerProps,
         title,
     } = props;
+
+    const navigate = useNavigate();
 
     return (
         <Drawer
             anchor="right"
             open={open}
-            onClose={onClose && onClose}
+            onClose={() => {
+                if(rootList) navigate(rootList);
+                if(onClose) onClose();
+            }}
             {...drawerProps}
         >
             <DrawerHeader>

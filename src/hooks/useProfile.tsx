@@ -1,8 +1,11 @@
-import { profileEntityProps } from 'types';
+import { useNavigate } from 'react-router-dom';
+
+import { ROUTES } from 'config';
+import { UsersItemProps } from 'types';
 
 const useProfile = () => {
-
-    const exampleEntity: profileEntityProps = {
+    const navigate = useNavigate();
+    const entity: UsersItemProps = {
         id: 657,
         name_first: 'John',
         name_last: 'Doe',
@@ -11,11 +14,13 @@ const useProfile = () => {
     };
 
     return {
-        entity: exampleEntity,
-        logOut: () => {
-            window.location.href = '/login#logoutSuccess';
+        entity,
+        logIn: () => {
+            /* TODO: login handler ... otherwise redirect must be as callback of this action */
+            navigate(`${ROUTES.Dashboard.match}#loginSuccess`);
         },
-        updateEntity: (data: profileEntityProps) => {
+        logOut: () => navigate(`${ROUTES.Login.match}#logoutSuccess`),
+        updateEntity: (data: UsersItemProps) => {
             console.log('Update entity handler ...', data);
         }
     };

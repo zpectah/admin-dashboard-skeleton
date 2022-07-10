@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { ROUTES } from 'config';
 import { useBreadcrumbs } from 'hooks';
@@ -8,14 +7,11 @@ import { DetailDrawer } from 'components';
 const PostsDetail = () => {
 
     const { id } = useBreadcrumbs();
-    const navigate = useNavigate();
-
-    const closeHandler = () => navigate(ROUTES.Posts.match as string);
 
     return (
         <DetailDrawer
             open
-            onClose={closeHandler}
+            rootList={ROUTES.Posts.match as string}
             title="Detail post title ..."
         >
             DetailDrawer content ... PostsDetail ... {id}

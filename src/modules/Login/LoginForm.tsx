@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { EMAIL_REGEX, TOAST_DEFAULT_TIMEOUT } from 'const';
 import { formBaseEventHandlerProps } from 'types';
 import { LoginFormModelProps } from './types';
-import { useToasts } from 'hooks';
+import { useToasts, useProfile } from 'hooks';
 import {
     ControlledForm,
     ControlledFormRow,
@@ -14,20 +14,19 @@ import {
 const LoginForm = () => {
     const { t } = useTranslation('modules');
     const { createToast } = useToasts();
+    const { logIn } = useProfile();
 
     const submitHandler: formBaseEventHandlerProps = (data, form) => {
-
-        // TODO: submit handler
-        console.log('submitHandler', data );
-        // TODO
-
+        // TODO: login handler ---->
+        console.log('LoginForm: submitHandler', data );
         form.reset();
         createToast({
             title: t('Login.form.message.success'),
             context: 'success',
             timeout: TOAST_DEFAULT_TIMEOUT,
         });
-
+        setTimeout(() => logIn(), 1000);
+        // TODO <----
     };
 
     return (

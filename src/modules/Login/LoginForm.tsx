@@ -6,7 +6,7 @@ import { formBaseEventHandlerProps } from 'types';
 import { useToasts, useProfile } from 'hooks';
 import {
     ControlledForm,
-    ControlledFormRow,
+    ControlledRow,
     Button,
 } from 'components';
 import defaultFormValues from './defaultFormValues';
@@ -38,7 +38,7 @@ const LoginForm = () => {
             onSubmit={submitHandler}
             render={(form) => (
                 <>
-                    <ControlledFormRow
+                    <ControlledRow
                         type="email"
                         name="email"
                         label={t('Login.form.email.label')}
@@ -47,7 +47,7 @@ const LoginForm = () => {
                         rules={{ pattern: EMAIL_REGEX }}
                         required
                     />
-                    <ControlledFormRow
+                    <ControlledRow
                         type="password"
                         name="password"
                         label={t('Login.form.password.label')}

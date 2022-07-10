@@ -19,9 +19,9 @@ import {
     Input,
     Password,
     Select,
-} from '../FormField';
+} from '../ui';
 
-type ControlledFormRowBaseProps = {
+type ControlledRowBaseProps = {
     name: string,
     control: UseControllerProps['control'],
     rules?: UseControllerProps['rules'],
@@ -43,9 +43,9 @@ type ControlledFormRowBaseProps = {
     required?: boolean,
     fieldAdditionalProps?: any,
 }
-export type ControlledFormRowProps = ControlledFormRowBaseProps
+export type ControlledRowProps = ControlledRowBaseProps
 
-const ControlledFormRow = (props: ControlledFormRowProps) => {
+const ControlledRow = (props: ControlledRowProps) => {
     const {
         name,
         control,
@@ -195,4 +195,4 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
     );
 };
 
-export default ControlledFormRow;
+export default ControlledRow;

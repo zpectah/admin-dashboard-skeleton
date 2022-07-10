@@ -7,15 +7,13 @@ import {
     ControlledRow,
     Button,
 } from 'components';
-import defaultFormValues from './defaultFormValues';
+import { SettingsLanguageFormProps } from '../types';
 
-type PostsDetailFormBaseProps = {
-    onDrawerClose?: () => void;
+const defaultFormValues: SettingsLanguageFormProps = {
+    defaultLanguage: 'en-US',
 };
-export type PostsDetailFormProps = PostsDetailFormBaseProps;
 
-const PostsDetailForm = (props: PostsDetailFormProps) => {
-    const { onDrawerClose } = props;
+const SettingsLanguagesForm = () => {
 
     const { t } = useTranslation([ 'common', 'modules' ]);
 
@@ -23,13 +21,12 @@ const PostsDetailForm = (props: PostsDetailFormProps) => {
         // TODO: ---->
         console.log('PostsDetailForm: submitHandler', data);
         form.reset();
-        if (onDrawerClose) onDrawerClose();
         // TODO <----
     };
 
     return (
         <ControlledForm
-            name="PostsDetailForm"
+            name="SettingsLanguagesForm"
             formOptions={{
                 defaultValues: defaultFormValues,
             }}
@@ -37,28 +34,18 @@ const PostsDetailForm = (props: PostsDetailFormProps) => {
             renderActions={(form) => (
                 <>
                     <Button
-                        secondary
-                        onClick={onDrawerClose}
-                    >
-                        {t('common:btn.cancel')}
-                    </Button>
-                    <Button
                         submit
                         disabled={!form.formState.isValid}
                     >
-                        {t('common:btn.submit')}
+                        {t('common:btn.update')}
                     </Button>
                 </>
             )}
             render={(form) => (
-                <>
-                    PostsDetailForm
-                    <br />
-
-                </>
+                <>SettingsContentForm form fields</>
             )}
         />
     );
 };
 
-export default PostsDetailForm;
+export default SettingsLanguagesForm;

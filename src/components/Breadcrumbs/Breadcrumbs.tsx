@@ -6,7 +6,7 @@ import { PROJECT_META } from 'config';
 import { useBreadcrumbs } from 'hooks';
 
 const Breadcrumbs = () => {
-    const { t } = useTranslation([ 'views', 'settings' ]);
+    const { t } = useTranslation([ 'views', 'modules' ]);
     const { route, isDetail, id, settingsTab } = useBreadcrumbs();
 
     const detail = useMemo(() => {
@@ -24,7 +24,7 @@ const Breadcrumbs = () => {
                 key={settingsTab.key}
                 variant="caption"
             >
-                {t(`settings:${settingsTab.key}.label`)}
+                {t(`modules:Settings.${settingsTab.key}.label`)}
             </Typography>
         );
     }, [ settingsTab, t ]);

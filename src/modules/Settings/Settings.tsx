@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import SettingsNav from './SettingsNav';
-import General from './panel/General';
-import Content from './panel/Content';
-import Languages from './panel/Languages';
+import SettingsGeneralForm from './panel/SettingsGeneralForm';
+import SettingsContentForm from './panel/SettingsContentForm';
+import SettingsLanguagesForm from './panel/SettingsLanguagesForm';
 
 const Settings = () => {
 
@@ -12,9 +12,9 @@ const Settings = () => {
         <>
             <SettingsNav />
             <Routes>
-                <Route path="/" element={<General />} />
-                <Route path="content" element={<Content />} />
-                <Route path="language" element={<Languages />} />
+                <Route path="/" element={<SettingsGeneralForm />} />
+                <Route path="content" element={<SettingsContentForm />} />
+                <Route path="language" element={<SettingsLanguagesForm />} />
             </Routes>
         </>
     );

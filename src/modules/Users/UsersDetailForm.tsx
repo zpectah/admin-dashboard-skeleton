@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { formBaseEventHandlerProps } from 'types';
 import {
     ControlledForm,
-    ControlledFormRow,
+    ControlledRow,
     Button,
 } from 'components';
 import defaultFormValues from './defaultFormValues';
+import {EMAIL_REGEX} from "../../const";
 
 type UsersDetailFormBaseProps = {
     onDrawerClose?: () => void;
@@ -50,16 +51,22 @@ const UsersDetailForm = (props: UsersDetailFormProps) => {
                     </Button>
                 </>
             )}
-            render={(form) => {
+            render={(form) => (
+                <>
+                    <ControlledRow
+                        type="email"
+                        name="email"
+                        label={t('modules:Login.form.email.label')} // TODO
+                        placeholder={t('modules:Login.form.email.placeholder')} // TODO
+                        control={form.control}
+                        rules={{ pattern: EMAIL_REGEX }}
+                        required
+                    />
+                    UsersDetailForm
+                    <br />
 
-                return (
-                    <>
-                        UsersDetailForm
-                        <br />
-
-                    </>
-                );
-            }}
+                </>
+            )}
         />
     );
 };

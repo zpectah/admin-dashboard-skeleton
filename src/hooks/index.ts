@@ -6,3 +6,5 @@ export { default as useToasts } from './useToasts';
 export { default as useLanguageToggle } from './useLanguageToggle';
 export { default as useAnnouncementBanner } from './useAnnouncementBanner';
 export { default as useProfile } from './useProfile';
+export { default as useUsers } from './useUsers';
+export { default as usePosts } from './usePosts';

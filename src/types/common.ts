@@ -24,3 +24,12 @@ export type navItemProps = {
     icon?: React.ReactNode,
     badge?: React.ReactNode,
 };
+
+export type toastItemProps = {
+    id?: string;
+    title: string;
+    content?: string;
+    context?: 'info' | 'success' | 'error';
+    timeout?: number;
+    onRemove?: (id: string) => void;
+};

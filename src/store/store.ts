@@ -12,6 +12,8 @@ const store: storeProps = {
     theme: ((localStorage.getItem(APP_THEME_KEY) === 'light' || localStorage.getItem(APP_THEME_KEY) === 'dark') && localStorage.getItem(APP_THEME_KEY) as 'light' | 'dark') || THEME.default,
     toasts: [],
     announcementBanner: `Some announcement example banner text`,
+    Users: [],
+    Posts: [],
 };
 
 export default store;

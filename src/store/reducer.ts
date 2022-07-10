@@ -12,6 +12,8 @@ import {
     TOAST_REMOVE,
     ANNOUNCEMENT_BANNER_ADD,
     ANNOUNCEMENT_BANNER_REMOVE,
+    LOAD_USERS,
+    LOAD_POSTS,
 } from './const';
 
 function Reducer (state = appStore, action: any) {
@@ -61,6 +63,16 @@ function Reducer (state = appStore, action: any) {
         case ANNOUNCEMENT_BANNER_REMOVE:
             return Object.assign({}, state, {
                 announcementBanner: null,
+            });
+
+        case LOAD_USERS:
+            return Object.assign({}, state, {
+                Users: action.payload,
+            });
+
+        case LOAD_POSTS:
+            return Object.assign({}, state, {
+                Posts: action.payload,
             });
 
         default:

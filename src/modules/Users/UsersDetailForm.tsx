@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { EMAIL_REGEX } from 'const';
 import { formBaseEventHandlerProps } from 'types';
 import {
     ControlledForm,
@@ -8,7 +9,6 @@ import {
     Button,
 } from 'components';
 import defaultFormValues from './defaultFormValues';
-import {EMAIL_REGEX} from "../../const";
 
 type UsersDetailFormBaseProps = {
     onDrawerClose?: () => void;

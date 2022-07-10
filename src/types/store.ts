@@ -1,13 +1,7 @@
 import React from 'react';
 
-export type toastItemProps = {
-    id?: string;
-    title: string;
-    content?: string;
-    context?: 'info' | 'success' | 'error';
-    timeout?: number;
-    onRemove?: (id: string) => void;
-};
+import { toastItemProps } from './common';
+import { UsersItemProps, PostsItemProps } from './model';
 
 export type storeProps = {
     sidebar: boolean,
@@ -15,4 +9,6 @@ export type storeProps = {
     theme: 'light' | 'dark',
     toasts: toastItemProps[],
     announcementBanner: React.ReactNode | null,
+    Users: UsersItemProps[],
+    Posts: PostsItemProps[],
 };

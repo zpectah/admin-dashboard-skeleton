@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { DETAIL_PATH_ID } from 'const';
-import { useBreadcrumbs } from 'hooks';
+import { usePosts } from 'hooks';
 import PostsList from './PostsList';
 import PostsDetail from './PostsDetail';
 
 const Posts = () => {
-    const { isDetail } = useBreadcrumbs();
+    const { loadPosts } = usePosts();
+
+    useEffect(() => {
+        loadPosts();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>

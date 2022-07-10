@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import { onSubmitProps } from 'types';
+import { EMAIL_REGEX } from 'const';
+import { formBaseEventHandlerProps } from 'types';
 import {
     ControlledForm,
     ControlledFormRow,
@@ -14,7 +15,7 @@ export type LoginFormModelProps = {
     password: string,
 }
 export type LoginFormProps = {
-    onSubmit: onSubmitProps,
+    onSubmit: formBaseEventHandlerProps,
 }
 
 const LoginForm = (props: LoginFormProps) => {
@@ -24,7 +25,6 @@ const LoginForm = (props: LoginFormProps) => {
         <ControlledForm
             name="LoginForm"
             formOptions={{
-                mode: 'all',
                 defaultValues: {
                     email: '',
                     password: '',
@@ -33,18 +33,19 @@ const LoginForm = (props: LoginFormProps) => {
             onSubmit={onSubmit}
             render={(form) => {
                 const { isValid } = form.formState;
-                console.log('form', form);
+
                 return (
                     <>
                         <ControlledFormRow
                             name="email"
                             label="E-mail"
                             control={form.control}
-                            // rules={{ required: true }}
-                            render={({ field, id }) => (
+                            rules={{ required: true, pattern: EMAIL_REGEX }}
+                            render={({ field, id, error }) => (
                                 <Input
                                     type="email"
                                     id={id}
+                                    error={error}
                                     {...field}
                                 />
                             )}
@@ -53,11 +54,12 @@ const LoginForm = (props: LoginFormProps) => {
                             name="password"
                             label="Password"
                             control={form.control}
-                            // rules={{ required: true }}
-                            render={({ field, id }) => (
+                            rules={{ required: true }}
+                            render={({ field, id, error }) => (
                                 <Input
                                     type="password"
                                     id={id}
+                                    error={error}
                                     {...field}
                                 />
                             )}

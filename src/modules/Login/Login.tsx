@@ -1,15 +1,20 @@
 import React from 'react';
 
-import { onSubmitProps } from 'types';
-import LoginForm, { LoginFormModelProps } from './LoginForm';
+import { formBaseEventHandlerProps } from 'types';
+import { useToasts } from 'hooks';
+import LoginForm from './LoginForm';
 
 const Login = () => {
-    const submitHandler: onSubmitProps = (data, reset) => {
+    const { createToast } = useToasts();
+
+    const submitHandler: formBaseEventHandlerProps = (data, form) => {
 
         console.log('submitHandler', data );
 
-        // ... also reset form data
-        reset();
+        form.reset();
+        createToast({
+            title: 'Form successfully submitted',
+        });
 
     };
 

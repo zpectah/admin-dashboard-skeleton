@@ -15,3 +15,5 @@ export const SCROLLBAR_DEFAULT_WIDTH = '25px';
 
 export const DETAIL_PATH_KEY = 'detail';
 export const DETAIL_PATH_ID = `${DETAIL_PATH_KEY}/:id`;
+
+export const EMAIL_REGEX = /^(?:(?!.*?[.]{2})[a-zA-Z0-9](?:[a-zA-Z0-9.+!%-]{1,64}|)|\"[a-zA-Z0-9.+!% -]{1,64}\")@[a-zA-Z0-9][a-zA-Z0-9.-]+(.[a-z]{2,}|.[0-9]{1,})$/;

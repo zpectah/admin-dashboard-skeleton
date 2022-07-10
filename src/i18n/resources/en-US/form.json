@@ -1,0 +1,10 @@
+{
+  "validation": {
+    "required": "Field is required",
+    "pattern": "Field value does not accept required pattern",
+    "min": "Insufficient minimum value",
+    "max": "A maximum value has been exceeded",
+    "minLength": "Insufficient number of characters",
+    "maxLength": "The maximum number of characters has been exceeded"
+  }
+}

@@ -10,3 +10,4 @@ export * from './ProfileBar';
 export * from './AnnouncementBanner';
 export * from './ToastItem';
 export * from './Breadcrumbs';
+export * from './DetailDrawer';

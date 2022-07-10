@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box } from '@mui/material';
-
-import { EMAIL_REGEX } from 'const';
+import { useTranslation } from 'react-i18next';
+import { EMAIL_REGEX, TOAST_DEFAULT_TIMEOUT } from 'const';
 import { formBaseEventHandlerProps } from 'types';
+import { LoginFormModelProps } from './types';
+import { useToasts } from 'hooks';
 import {
     ControlledForm,
     ControlledFormRow,
@@ -10,16 +11,24 @@ import {
     Button,
 } from 'components';
 
-export type LoginFormModelProps = {
-    email: string,
-    password: string,
-}
-export type LoginFormProps = {
-    onSubmit: formBaseEventHandlerProps,
-}
+const LoginForm = () => {
+    const { t } = useTranslation();
+    const { createToast } = useToasts();
 
-const LoginForm = (props: LoginFormProps) => {
-    const { onSubmit } = props;
+    const submitHandler: formBaseEventHandlerProps = (data, form) => {
+
+        // TODO: submit handler
+        console.log('submitHandler', data );
+        // TODO
+
+        form.reset();
+        createToast({
+            title: 'Form successfully submitted',
+            context: 'success',
+            timeout: TOAST_DEFAULT_TIMEOUT,
+        });
+
+    };
 
     return (
         <ControlledForm
@@ -28,58 +37,66 @@ const LoginForm = (props: LoginFormProps) => {
                 defaultValues: {
                     email: '',
                     password: '',
-                },
+                } as LoginFormModelProps,
             }}
-            onSubmit={onSubmit}
-            render={(form) => {
-                const { isValid } = form.formState;
-
-                return (
-                    <>
-                        <ControlledFormRow
-                            name="email"
-                            label="E-mail"
-                            control={form.control}
-                            rules={{ required: true, pattern: EMAIL_REGEX }}
-                            render={({ field, id, error }) => (
-                                <Input
-                                    type="email"
-                                    id={id}
-                                    error={error}
-                                    {...field}
-                                />
-                            )}
-                        />
-                        <ControlledFormRow
-                            name="password"
-                            label="Password"
-                            control={form.control}
-                            rules={{ required: true }}
-                            render={({ field, id, error }) => (
-                                <Input
-                                    type="password"
-                                    id={id}
-                                    error={error}
-                                    {...field}
-                                />
-                            )}
-                        />
-                        <Box>
-                            <Button
-                                submit
-                                disabled={!isValid}
-                            >
-                                Submit
-                            </Button>
-                            <Button
-                                secondary
-                                onClick={() => form.reset()}
-                            >
-                                Reset
-                            </Button>
-                        </Box>
-                    </>
-                );
+            onSubmit={submitHandler}
+            render={(form) => (
+                <>
+                    <ControlledFormRow
+                        name="email"
+                        label="E-mail"
+                        control={form.control}
+                        rules={{ required: true, pattern: EMAIL_REGEX }}
+                        render={({ field, id, error }) => (
+                            <Input
+                                type="email"
+                                id={id}
+                                error={error}
+                                {...field}
+                            />
+                        )}
+                    />
+                    <ControlledFormRow
+                        name="password"
+                        label="Password"
+                        control={form.control}
+                        rules={{ required: true }}
+                        render={({ field, id, error }) => (
+                            <Input
+                                type="password"
+                                id={id}
+                                error={error}
+                                {...field}
+                            />
+                        )}
+                    />
+                </>
+            )}
+            renderActions={(form) => (
+                <>
+                    <Button
+                        secondary
+                        onClick={() => form.reset()}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        submit
+                        disabled={!form.formState.isValid}
+                    >
+                        Submit
+                    </Button>
+                </>
+            )}
+            actionsBoxProps={{
+                sx: {
+                    pt: 2.5,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    gap: 2.5,
+                },
             }}
         />
     );

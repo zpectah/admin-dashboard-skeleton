@@ -10,6 +10,7 @@ import {
     FormLabel,
     FormHelperText,
     BoxProps,
+    FormLabelProps,
     FormHelperTextProps,
 } from '@mui/material';
 
@@ -28,6 +29,7 @@ type ControlledFormRowBaseProps = {
     wrapperBoxProps?: BoxProps,
     fieldBoxProps?: BoxProps,
     textBoxProps?: BoxProps,
+    formLabelProps?: FormLabelProps,
 }
 export type ControlledFormRowProps = ControlledFormRowBaseProps
 
@@ -47,6 +49,7 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
         wrapperBoxProps,
         fieldBoxProps,
         textBoxProps,
+        formLabelProps,
     } = props;
 
     const { t } = useTranslation('form');
@@ -57,14 +60,13 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
         defaultValue,
     });
     const fieldState = field.fieldState;
+    const fieldHasError = fieldState.error && fieldState.isTouched;
 
     const renderHelpers = useMemo(() => {
         const list = [ ...helpers ];
 
         return (
-            <Box
-                {...textBoxProps}
-            >
+            <>
                 {list.map((txt) => (
                     <FormHelperText
                         key={txt}
@@ -73,17 +75,15 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
                         {txt}
                     </FormHelperText>
                 ))}
-            </Box>
+            </>
         );
-    }, [ helpTextProps, helpers, textBoxProps ]);
+    }, [ helpTextProps, helpers ]);
     const renderErrors = useMemo(() => {
         const list = [ ...errors ];
-        if (fieldState.isTouched && fieldState.error) list.push(t(`validation.${fieldState.error.type}`));
+        if (fieldState.error && fieldHasError) list.push(t(`validation.${fieldState.error.type}`));
 
         return (
-            <Box
-                {...textBoxProps}
-            >
+            <>
                 {list.map((txt) => (
                     <FormHelperText
                         key={txt}
@@ -93,17 +93,22 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
                         {txt}
                     </FormHelperText>
                 ))}
-            </Box>
+            </>
         );
-    }, [ errorTextProps, errors, fieldState.error, fieldState.isTouched, t, textBoxProps ]);
+    }, [ errorTextProps, errors, fieldState.error, fieldHasError, t ]);
 
     return (
         <Box
             {...wrapperBoxProps}
+            sx={{
+                mb: 2,
+                ...wrapperBoxProps?.sx
+            }}
         >
             {label && (
                 <FormLabel
                     htmlFor={name}
+                    {...formLabelProps}
                 >
                     {label}
                 </FormLabel>
@@ -111,10 +116,14 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
             <Box
                 {...fieldBoxProps}
             >
-                {render({ ...field, id, error: !!fieldState.error && fieldState.isTouched })}
+                {render({ ...field, id, error: fieldHasError })}
             </Box>
-            {renderHelpers}
-            {renderErrors}
+            <Box
+                {...textBoxProps}
+            >
+                {renderHelpers}
+                {renderErrors}
+            </Box>
         </Box>
     );
 };

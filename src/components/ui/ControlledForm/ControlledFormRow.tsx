@@ -14,12 +14,18 @@ import {
     FormHelperTextProps,
 } from '@mui/material';
 
+import { formRowType } from 'types';
+import {
+    Input,
+    Select,
+} from '../FormField';
+
 type ControlledFormRowBaseProps = {
     name: string,
     control: UseControllerProps['control'],
     rules?: UseControllerProps['rules'],
     defaultValue?: UseControllerProps['defaultValue'],
-    render: (field: UseControllerReturn & { id?: string, error?: boolean }) => React.ReactNode,
+    render?: (field: UseControllerReturn & { id?: string, error?: boolean }) => React.ReactNode,
     id?: string,
     label?: string,
     helpers?: string[],
@@ -27,9 +33,14 @@ type ControlledFormRowBaseProps = {
     helpTextProps?: FormHelperTextProps,
     errorTextProps?: FormHelperTextProps,
     wrapperBoxProps?: BoxProps,
+    innerBoxProps?: BoxProps,
     fieldBoxProps?: BoxProps,
     textBoxProps?: BoxProps,
     formLabelProps?: FormLabelProps,
+    type?: formRowType,
+    placeholder?: string,
+    required?: boolean,
+    fieldAdditionalProps?: any,
 }
 export type ControlledFormRowProps = ControlledFormRowBaseProps
 
@@ -47,21 +58,78 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
         helpTextProps,
         errorTextProps,
         wrapperBoxProps,
+        innerBoxProps,
         fieldBoxProps,
         textBoxProps,
         formLabelProps,
+        type = 'custom',
+        placeholder,
+        required,
+        fieldAdditionalProps,
     } = props;
 
     const { t } = useTranslation('form');
     const field = useController({
         name,
         control,
-        rules,
+        rules: {
+            required,
+            ...rules
+        },
         defaultValue,
     });
     const fieldState = field.fieldState;
     const fieldHasError = fieldState.error && fieldState.isTouched;
 
+    const renderField = useMemo(() => {
+        const fieldBaseProps = {
+            required,
+            ...field.field,
+            ...fieldAdditionalProps,
+        };
+
+        switch (type) {
+
+            case 'text':
+            case 'email':
+                return (
+                    <Input
+                        type={type}
+                        id={id}
+                        error={fieldHasError}
+                        placeholder={placeholder}
+                        {...fieldBaseProps}
+                    />
+                );
+
+            case 'password':
+                return (
+                    <Input
+                        type="password"
+                        id={id}
+                        error={fieldHasError}
+                        placeholder={placeholder}
+                        {...fieldBaseProps}
+                    />
+                );
+
+            // TODO
+
+            case 'custom':
+            default:
+                if (render) return render({ ...field, id, error: fieldHasError });
+
+        }
+    }, [
+        field,
+        id,
+        fieldHasError,
+        type,
+        render,
+        placeholder,
+        required,
+        fieldAdditionalProps,
+    ]);
     const renderHelpers = useMemo(() => {
         const list = [ ...helpers ];
 
@@ -105,22 +173,21 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
                 ...wrapperBoxProps?.sx
             }}
         >
-            {label && (
-                <FormLabel
-                    htmlFor={name}
-                    {...formLabelProps}
-                >
-                    {label}
-                </FormLabel>
-            )}
-            <Box
-                {...fieldBoxProps}
-            >
-                {render({ ...field, id, error: fieldHasError })}
+            <Box {...innerBoxProps}>
+                {label && (
+                    <FormLabel
+                        htmlFor={name}
+                        required={required}
+                        {...formLabelProps}
+                    >
+                        {label}
+                    </FormLabel>
+                )}
+                <Box {...fieldBoxProps}>
+                    {renderField}
+                </Box>
             </Box>
-            <Box
-                {...textBoxProps}
-            >
+            <Box {...textBoxProps}>
                 {renderHelpers}
                 {renderErrors}
             </Box>

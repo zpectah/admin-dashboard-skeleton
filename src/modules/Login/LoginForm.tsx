@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { EMAIL_REGEX, TOAST_DEFAULT_TIMEOUT } from 'const';
 import { formBaseEventHandlerProps } from 'types';
 import { LoginFormModelProps } from './types';
@@ -7,7 +8,6 @@ import { useToasts } from 'hooks';
 import {
     ControlledForm,
     ControlledFormRow,
-    Input,
     Button,
 } from 'components';
 
@@ -43,34 +43,21 @@ const LoginForm = () => {
             render={(form) => (
                 <>
                     <ControlledFormRow
+                        type="email"
                         name="email"
                         label={t('Login.form.email.label')}
+                        placeholder={t('Login.form.email.placeholder')}
                         control={form.control}
-                        rules={{ required: true, pattern: EMAIL_REGEX }}
-                        render={({ field, id, error }) => (
-                            <Input
-                                type="email"
-                                id={id}
-                                error={error}
-                                placeholder={t('Login.form.email.placeholder')}
-                                {...field}
-                            />
-                        )}
+                        rules={{ pattern: EMAIL_REGEX }}
+                        required
                     />
                     <ControlledFormRow
+                        type="password"
                         name="password"
                         label={t('Login.form.password.label')}
+                        placeholder={t('Login.form.password.placeholder')}
                         control={form.control}
-                        rules={{ required: true }}
-                        render={({ field, id, error }) => (
-                            <Input
-                                type="password"
-                                id={id}
-                                error={error}
-                                placeholder={t('Login.form.password.placeholder')}
-                                {...field}
-                            />
-                        )}
+                        required
                     />
                 </>
             )}

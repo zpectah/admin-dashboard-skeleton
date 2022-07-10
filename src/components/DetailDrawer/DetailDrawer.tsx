@@ -23,6 +23,7 @@ type DetailDrawerBaseProps = {
     rootList?: string,
     drawerProps?: Partial<DrawerProps>,
     title?: string,
+    render?: (onClose: () => void) => React.ReactNode,
 };
 export type DetailDrawerProps = DetailDrawerBaseProps;
 
@@ -34,18 +35,21 @@ const DetailDrawer: React.FC<DetailDrawerProps> = (props) => {
         rootList,
         drawerProps,
         title,
+        render,
     } = props;
 
     const navigate = useNavigate();
+
+    const closeHandler = () => {
+        if(rootList) navigate(rootList);
+        if(onClose) onClose();
+    };
 
     return (
         <Drawer
             anchor="right"
             open={open}
-            onClose={() => {
-                if(rootList) navigate(rootList);
-                if(onClose) onClose();
-            }}
+            onClose={closeHandler}
             {...drawerProps}
         >
             <DrawerHeader>
@@ -66,7 +70,8 @@ const DetailDrawer: React.FC<DetailDrawerProps> = (props) => {
             <DrawerContainer>
                 <Scrollable>
                     <DrawerContent>
-                        {children}
+                        {children && children}
+                        {render && render(closeHandler)}
                     </DrawerContent>
                 </Scrollable>
             </DrawerContainer>

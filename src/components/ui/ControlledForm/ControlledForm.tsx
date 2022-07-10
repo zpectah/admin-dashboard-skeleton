@@ -114,6 +114,11 @@ const ControlledForm: React.FC<ControlledFormProps> = (props) => {
             {renderActions && (
                 <Box
                     {...actionsBoxProps}
+                    sx={{
+                        display: 'flex',
+                        gap: 2,
+                        ...actionsBoxProps?.sx
+                    }}
                 >
                     {renderActions(form)}
                 </Box>

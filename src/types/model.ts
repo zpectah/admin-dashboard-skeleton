@@ -1,5 +1,7 @@
+export type modelIdType = number | 'new';
+
 export type UsersItemProps = {
-    id: number,
+    id: modelIdType,
     name_first: string,
     name_last: string,
     email: string,
@@ -7,7 +9,7 @@ export type UsersItemProps = {
 };
 
 export type PostsItemProps = {
-    id: number,
+    id: modelIdType,
     name: string,
 };
 

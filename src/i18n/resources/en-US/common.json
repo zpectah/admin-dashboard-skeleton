@@ -4,7 +4,8 @@
     "cancel": "Cancel",
     "submit": "Submit",
     "dismiss": "Dismiss",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "close": "Close"
   },
   "footer": {
     "copyright": "Copyright by {{company}}",

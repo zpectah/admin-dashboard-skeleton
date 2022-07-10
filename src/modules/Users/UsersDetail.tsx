@@ -3,6 +3,7 @@ import React from 'react';
 import { ROUTES } from 'config';
 import { useBreadcrumbs } from 'hooks';
 import { DetailDrawer } from 'components';
+import UsersDetailForm from './UsersDetailForm';
 
 const UsersDetail = () => {
 
@@ -13,11 +14,12 @@ const UsersDetail = () => {
             open
             rootList={ROUTES.Users.match as string}
             title="Detail user title ..."
-        >
-            DetailDrawer content ... UserDetail ... {id}
-            <br />
-            form ...
-        </DetailDrawer>
+            render={(onClose) => (
+                <UsersDetailForm
+                    onDrawerClose={onClose}
+                />
+            )}
+        />
     );
 };
 

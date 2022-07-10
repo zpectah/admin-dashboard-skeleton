@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { EMAIL_REGEX, TOAST_DEFAULT_TIMEOUT } from 'const';
 import { formBaseEventHandlerProps } from 'types';
-import { LoginFormModelProps } from './types';
 import { useToasts, useProfile } from 'hooks';
 import {
     ControlledForm,
     ControlledFormRow,
     Button,
 } from 'components';
+import defaultFormValues from './defaultFormValues';
 
 const LoginForm = () => {
     const { t } = useTranslation('modules');
@@ -33,10 +33,7 @@ const LoginForm = () => {
         <ControlledForm
             name="LoginForm"
             formOptions={{
-                defaultValues: {
-                    email: '',
-                    password: '',
-                } as LoginFormModelProps,
+                defaultValues: defaultFormValues,
             }}
             onSubmit={submitHandler}
             render={(form) => (
@@ -79,11 +76,9 @@ const LoginForm = () => {
             actionsBoxProps={{
                 sx: {
                     pt: 2.5,
-                    display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'row',
-                    gap: 2.5,
                 },
             }}
         />

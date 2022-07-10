@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Typography } from '@mui/material';
 
+import { ROUTES } from 'config';
 import LoginForm from './LoginForm';
 
 const Login = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation([ 'views', 'modules' ]);
 
     return (
         <>
@@ -15,7 +17,7 @@ const Login = () => {
                     textAlign: 'center',
                 }}
             >
-                Login to system
+                {t('views:login.content.title')}
             </Typography>
             <LoginForm />
             <Box
@@ -24,13 +26,13 @@ const Login = () => {
                     textAlign: 'center',
                 }}
             >
-                <a href="/">
-                    Lost password
-                </a>
+                <Link to={ROUTES.LostPassword.match as string}>
+                    {t('modules:Login.link.lostPassword')}
+                </Link>
                 &nbsp;|&nbsp;
-                <a href="/">
-                    Dont have account yet?
-                </a>
+                <Link to={ROUTES.Registration.match as string}>
+                    {t('modules:Login.link.notAccount')}
+                </Link>
             </Box>
         </>
     );

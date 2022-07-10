@@ -1,0 +1,38 @@
+{
+  "Settings": {
+    "general": {
+      "label": "General"
+    },
+    "content": {
+      "label": "Content"
+    },
+    "language": {
+      "label": "Language"
+    }
+  },
+  "Login": {
+    "form": {
+      "email": {
+        "label": "E-mail",
+        "placeholder": "Type your e-mail"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Type your password"
+      },
+      "btn": {
+        "submit": "Submit",
+        "reset": "Reset"
+      },
+      "message": {
+        "success": "Login was successful, now you will be redirected to the dashboard",
+        "notExist": "This user is not exist in database",
+        "passwordNotMatch": "Password does not match with this e-mail"
+      }
+    },
+    "link": {
+      "lostPassword": "Lost password",
+      "notAccount": "Not registered yet?"
+    }
+  }
+}

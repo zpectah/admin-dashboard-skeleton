@@ -9,7 +9,7 @@ import { useBreadcrumbs } from 'hooks';
 const SettingsNav = () => {
     const [ tab, setTab ] = useState('general');
 
-    const { t } = useTranslation('settings');
+    const { t } = useTranslation('modules');
     const navigate = useNavigate();
     const { settingsTab } = useBreadcrumbs();
 
@@ -25,7 +25,7 @@ const SettingsNav = () => {
                 <Tab
                     key={key}
                     value={key}
-                    label={t(`${key}.label`)}
+                    label={t(`Settings.${key}.label`)}
                     onClick={() => navigate(match)}
                 />
             ))}

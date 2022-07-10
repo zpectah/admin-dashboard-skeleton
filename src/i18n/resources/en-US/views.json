@@ -17,6 +17,9 @@
     "meta": {
       "title": "Login to system"
     },
+    "content": {
+      "title": "Login to system"
+    },
     "label": "Sign In"
   },
   "lostPassword": {

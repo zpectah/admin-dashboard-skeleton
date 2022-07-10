@@ -12,7 +12,7 @@ import {
 } from 'components';
 
 const LoginForm = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('modules');
     const { createToast } = useToasts();
 
     const submitHandler: formBaseEventHandlerProps = (data, form) => {
@@ -23,7 +23,7 @@ const LoginForm = () => {
 
         form.reset();
         createToast({
-            title: 'Form successfully submitted',
+            title: t('Login.form.message.success'),
             context: 'success',
             timeout: TOAST_DEFAULT_TIMEOUT,
         });
@@ -44,7 +44,7 @@ const LoginForm = () => {
                 <>
                     <ControlledFormRow
                         name="email"
-                        label="E-mail"
+                        label={t('Login.form.email.label')}
                         control={form.control}
                         rules={{ required: true, pattern: EMAIL_REGEX }}
                         render={({ field, id, error }) => (
@@ -52,13 +52,14 @@ const LoginForm = () => {
                                 type="email"
                                 id={id}
                                 error={error}
+                                placeholder={t('Login.form.email.placeholder')}
                                 {...field}
                             />
                         )}
                     />
                     <ControlledFormRow
                         name="password"
-                        label="Password"
+                        label={t('Login.form.password.label')}
                         control={form.control}
                         rules={{ required: true }}
                         render={({ field, id, error }) => (
@@ -66,6 +67,7 @@ const LoginForm = () => {
                                 type="password"
                                 id={id}
                                 error={error}
+                                placeholder={t('Login.form.password.placeholder')}
                                 {...field}
                             />
                         )}
@@ -78,13 +80,13 @@ const LoginForm = () => {
                         secondary
                         onClick={() => form.reset()}
                     >
-                        Reset
+                        {t('Login.form.btn.reset')}
                     </Button>
                     <Button
                         submit
                         disabled={!form.formState.isValid}
                     >
-                        Submit
+                        {t('Login.form.btn.submit')}
                     </Button>
                 </>
             )}

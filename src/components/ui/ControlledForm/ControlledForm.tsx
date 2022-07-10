@@ -115,7 +115,9 @@ const ControlledForm: React.FC<ControlledFormProps> = (props) => {
                 <Box
                     {...actionsBoxProps}
                     sx={{
+                        pt: 2,
                         display: 'flex',
+                        flexDirection: 'row',
                         gap: 2,
                         ...actionsBoxProps?.sx
                     }}

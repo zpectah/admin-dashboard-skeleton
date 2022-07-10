@@ -17,7 +17,7 @@ const LoginForm = () => {
     const { logIn } = useProfile();
 
     const submitHandler: formBaseEventHandlerProps = (data, form) => {
-        // TODO: login handler ---->
+        // TODO: ---->
         console.log('LoginForm: submitHandler', data );
         form.reset();
         createToast({
@@ -75,10 +75,8 @@ const LoginForm = () => {
             )}
             actionsBoxProps={{
                 sx: {
-                    pt: 2.5,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flexDirection: 'row',
                 },
             }}
         />

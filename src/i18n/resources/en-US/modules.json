@@ -34,5 +34,11 @@
       "lostPassword": "Lost password",
       "notAccount": "Not registered yet?"
     }
+  },
+  "Posts": {
+    "form": {}
+  },
+  "Users": {
+    "form": {}
   }
 }

@@ -17,6 +17,7 @@ import {
 import { formRowType } from 'types';
 import {
     Input,
+    Password,
     Select,
 } from '../FormField';
 
@@ -104,8 +105,7 @@ const ControlledFormRow = (props: ControlledFormRowProps) => {
 
             case 'password':
                 return (
-                    <Input
-                        type="password"
+                    <Password
                         id={id}
                         error={fieldHasError}
                         placeholder={placeholder}

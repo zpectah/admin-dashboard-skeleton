@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { TextField, TextFieldProps } from '@mui/material';
 
 type UiInputBaseProps = {};
-export type UiInputProps = UiInputBaseProps & Partial<TextFieldProps>;
+export type UiInputProps = UiInputBaseProps & TextFieldProps;
 
 const UiInput = forwardRef((props: UiInputProps, ref) => {
     const { ...rest } = props;
